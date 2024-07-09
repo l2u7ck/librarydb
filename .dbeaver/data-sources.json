@@ -1,0 +1,43 @@
+{
+	"folders": {},
+	"connections": {
+		"postgres-jdbc-190926445bf-78d36259a34f19a6": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "library",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "5432",
+				"database": "library",
+				"url": "jdbc:postgresql://localhost:5432/library",
+				"configurationType": "MANUAL",
+				"home": "postgresql-x64-16",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-chosen-role@": ""
+				},
+				"auth-model": "native"
+			}
+		}
+	},
+	"virtual-models": {"postgres-jdbc-190926445bf-78d36259a34f19a6":{"library":{"public":{"@properties":{"erd.diagram.state":{"serialized":"\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202407092247\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-190926445bf-78d36259a34f19a6\"\u003e\u003centity id\u003d\"1\" name\u003d\"books\" fq-name\u003d\"public.books\" order\u003d\"0\" x\u003d\"529\" y\u003d\"27\"\u003e\u003cpath name\u003d\"public\"/\u003e\u003cpath name\u003d\"library\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"library_cards\" fq-name\u003d\"public.library_cards\" order\u003d\"1\" x\u003d\"246\" y\u003d\"304\"\u003e\u003cpath name\u003d\"public\"/\u003e\u003cpath name\u003d\"library\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"3\" name\u003d\"pass\" fq-name\u003d\"public.pass\" order\u003d\"2\" x\u003d\"243\" y\u003d\"51\"\u003e\u003cpath name\u003d\"public\"/\u003e\u003cpath name\u003d\"library\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"4\" name\u003d\"racks\" fq-name\u003d\"public.racks\" order\u003d\"3\" x\u003d\"540\" y\u003d\"319\"\u003e\u003cpath name\u003d\"public\"/\u003e\u003cpath name\u003d\"library\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"pass_book_id_fkey\" fq-name\u003d\"public.pass.pass_book_id_fkey\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"racks_book_id_fkey\" fq-name\u003d\"public.racks.racks_book_id_fkey\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"4\"/\u003e\u003crelation name\u003d\"pass_library_card_id_fkey\" fq-name\u003d\"public.pass.pass_library_card_id_fkey\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"3\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"}}}}}},
+	"connection-types": {
+		"dev": {
+			"name": "Разработка",
+			"color": "255,255,255",
+			"description": "База данных для разработки",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": false,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800,
+			"auto-close-connections": true,
+			"close-connections-period": 14400
+		}
+	}
+}
