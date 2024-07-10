@@ -2,16 +2,17 @@ DROP TABLE IF EXISTS library_cards CASCADE;
 DROP TABLE IF EXISTS books CASCADE;
 DROP TABLE IF EXISTS pass CASCADE;
 DROP TABLE IF EXISTS racks CASCADE;
+DROP TABLE IF EXISTS book_positions CASCADE;
 
 CREATE TABLE IF NOT EXISTS library_cards (
 	library_card_id SERIAL PRIMARY KEY,
 	name_user VARCHAR(50) NOT NULL,
 	surname VARCHAR(50) NOT NULL,
 	patronymic VARCHAR(50),
-	address VARCHAR(100) NOT NULL,
+	address VARCHAR(100),
 	phone CHAR(12) NOT NULL CHECK (phone LIKE ('+7%') OR phone LIKE ('8%')),
 	date_of_birth DATE NOT NULL, 
-	issue_date_card DATE NOT NULL,
+	issue_date_card DATE DEFAULT NOW() NOT NULL,
 	CHECK (date_of_birth BETWEEN DATE(NOW() + INTERVAL '-120' YEAR) AND DATE(NOW() + INTERVAL '-14' YEAR)),
 	CHECK (issue_date_card BETWEEN DATE(NOW() + INTERVAL '-120' YEAR) AND DATE(NOW()))
 );
@@ -36,15 +37,15 @@ CREATE TABLE IF NOT EXISTS pass (
 	pass_id SERIAL PRIMARY KEY,
 	library_card_id INTEGER REFERENCES library_cards(library_card_id),
 	book_id INTEGER REFERENCES books(book_id),
-	date_of_issue DATE NOT NULL CHECK (date_of_issue = DATE(NOW())),
+	date_of_issue DATE DEFAULT NOW() CHECK (date_of_issue = DATE(NOW())),
 	date_return DATE CHECK (date_of_issue BETWEEN date_of_issue AND DATE(NOW())),
 	normative_period INTEGER NOT NULL CHECK (normative_period BETWEEN 5 AND 15)
 ); 
 
-CREATE TABLE IF NOT EXISTS book_positions (
+CREATE TABLE IF NOT EXISTS book_positions(
 	book_position_id SERIAL PRIMARY KEY,
 	rack_id INTEGER REFERENCES racks(rack_id),
-	book_id INTEGER REFERENCES books(book_id),
+	book_id INTEGER REFERENCES books(book_id) UNIQUE,
 	number_shelf INTEGER NOT NULL CHECK (number_shelf BETWEEN 1 AND 1000)
 	
 );
